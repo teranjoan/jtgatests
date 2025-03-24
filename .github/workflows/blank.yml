@@ -1,0 +1,38 @@
+name: CI/CD Workflow
+
+on:
+  push:
+    branches:
+      - int
+      - tst
+  pull_request:
+    branches:
+      - int
+      - tst
+    types:
+      - closed
+  create:
+    tags:
+      - prod-*
+
+jobs:
+  build-image:
+    if: github.ref == 'refs/heads/int' || (github.event_name == 'pull_request' && github.base_ref == 'int' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build image
+        run: echo "hola build image"
+
+  rename-image:
+    if: github.ref == 'refs/heads/tst' || (github.event_name == 'pull_request' && github.base_ref == 'tst' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rename image
+        run: echo "Rename image executed"
+
+  deploy-prod:
+    if: startsWith(github.ref, 'refs/tags/prod-')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to production
+        run: echo "Deploying to production"
