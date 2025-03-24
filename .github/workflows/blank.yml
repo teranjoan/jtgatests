@@ -18,22 +18,33 @@ on:
 
 jobs:
   build-image:
-    if: github.ref == 'refs/heads/int' || (github.event_name == 'pull_request' && github.base_ref == 'int' && github.event.pull_request.merged == true) #TODO: esto lanza dos workflows
+    if: >
+      github.event_name == 'push' && github.ref == 'refs/heads/int' ||
+      (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'int' && github.actor != 'github-actions[bot]')
+    runs-on: ubuntu-latest
     runs-on: ubuntu-latest
     steps:
       - name: Build image
         run: echo "hola build image"
 
-  rename-image:
+  depoloy-test:
     if: github.ref == 'refs/heads/tst' || (github.event_name == 'pull_request' && github.base_ref == 'tst' && github.event.pull_request.merged == true)
     runs-on: ubuntu-latest
     steps:
-      - name: Rename image
-        run: echo "Rename image executed"
+      - name: SWR Login
+        run: echo "SWR login"
+      - name: Docker Pull
+        run: echo "Docker pull "
+      - name: Retag Image
+        run: echo "Retag Image to tst"
 
   deploy-prod:
     if: startsWith(github.ref, 'refs/tags/prod-')
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to production
-        run: echo "Deploying to production"
+     - name: SWR Login
+        run: echo "SWR login"
+      - name: Docker Pull
+        run: echo "Docker pull "
+      - name: Retag Image
+        run: echo "Retag Image to prd"
