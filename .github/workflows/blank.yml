@@ -5,12 +5,12 @@ on:
     branches:
       - int
       - tst
-  pull_request:
-    branches:
-      - int
-      - tst
-    types:
-      - closed
+  # pull_request:
+  #   branches:
+  #     - int
+  #     - tst
+  #   types:
+  #     - closed
   create:
     tags:
       - prod-*
