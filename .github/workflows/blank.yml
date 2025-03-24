@@ -43,7 +43,7 @@ jobs:
     steps:
      - name: SWR Login
         run: echo "SWR login"
-      - name: Docker Pull
+     - name: Docker Pull
         run: echo "Docker pull "
-      - name: Retag Image
+     - name: Retag Image
         run: echo "Retag Image to prd"
