@@ -15,7 +15,7 @@ on:
 jobs:
   build-image:
     if: >
-      github.event_name == 'push' && github.ref == 'refs/heads/int' || github.event_name == 'push' && startsWith(github.ref, 'refs/heads/dev-')
+      github.event_name == 'push' && (github.ref == 'refs/heads/int' ||  startsWith(github.ref, 'refs/heads/dev-'))
     runs-on: ubuntu-latest
     steps:
       - name: Build image
@@ -23,7 +23,7 @@ jobs:
 
   depoloy-test:
     if: >
-      github.event_name == 'push' && github.ref == 'refs/heads/tst' 
+      github.event_name == 'push' && (github.ref == 'refs/heads/tst' ||  startsWith(github.ref, 'refs/heads/tst-'))
     runs-on: ubuntu-latest
     steps:
       - name: SWR Login
