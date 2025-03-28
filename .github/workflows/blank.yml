@@ -5,7 +5,7 @@ on:
     branches:
       - int
       - tst
-      - dev-cicd
+      - "dev-*"
 
   create:
     tags:
@@ -15,7 +15,7 @@ on:
 jobs:
   build-image:
     if: >
-      github.event_name == 'push' && github.ref == 'refs/heads/int' || github.event_name == 'push' && github.ref == 'refs/heads/dev-cicd'
+      github.event_name == 'push' && github.ref == 'refs/heads/int' || github.event_name == 'push' && startsWith(github.ref, 'refs/tags/dev-')
     runs-on: ubuntu-latest
     steps:
       - name: Build image
