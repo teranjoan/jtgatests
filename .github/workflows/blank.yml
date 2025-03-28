@@ -15,8 +15,7 @@ on:
 jobs:
   build-image:
     if: >
-      github.event_name == 'push' && github.ref == 'refs/heads/int' || github.event_name == 'push' && github.ref == 'refs/heads/dev-cicd' ||
-      (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'int' && github.actor != 'github-actions[bot]')
+      github.event_name == 'push' && github.ref == 'refs/heads/int' || github.event_name == 'push' && github.ref == 'refs/heads/dev-cicd'
     runs-on: ubuntu-latest
     steps:
       - name: Build image
@@ -24,8 +23,7 @@ jobs:
 
   depoloy-test:
     if: >
-      github.event_name == 'push' && github.ref == 'refs/heads/tst' ||
-      (github.event_name == 'pull_request' && github.event.pull_request.merged == true && github.base_ref == 'tst' && github.actor != 'github-actions[bot]')
+      github.event_name == 'push' && github.ref == 'refs/heads/tst' 
     runs-on: ubuntu-latest
     steps:
       - name: SWR Login
