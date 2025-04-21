@@ -4,4 +4,4 @@ runs:
   using: "composite"
   steps:
     - shell: bash
-      run: echo "Deploying image: $BUILDED_IMAGE"
+      run: echo "Deploying imagad asdas"
