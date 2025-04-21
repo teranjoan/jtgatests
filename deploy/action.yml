@@ -1,0 +1,5 @@
+name: Deploy Action
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Deploying image: $BUILDED_IMAGE"
