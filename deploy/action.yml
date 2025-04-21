@@ -1,5 +1,7 @@
 name: Deploy Action
+description: Prints the built image
 runs:
   using: "composite"
   steps:
-    - run: echo "Deploying image: $BUILDED_IMAGE"
+    - shell: bash
+      run: echo "Deploying image: $BUILDED_IMAGE"
