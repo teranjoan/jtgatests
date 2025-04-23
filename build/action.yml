@@ -7,5 +7,5 @@ runs:
   using: "composite"
   steps:
     - id: build-step
-      run: echo "image=jtga-builded-image:latest" >> $GITHUB_OUTPUT
+      run: echo "image=jtga-builded-image:laconchadetuhermana" >> $GITHUB_OUTPUT
       shell: bash
